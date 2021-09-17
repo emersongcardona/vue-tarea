@@ -1,49 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+    <style>
+        .body{
+         margin-top: 50px1;
+        }
+    </style>    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Document</title>
+    
 </head>
 <body>
+
     <main id='app'>
-        <div>
-            <input type="text" placeholder="tarea" v-model="tarea" :key="tarea" @keyup.enter="mounted(tarea)"/>
+        <div class="container">
+          <div class="body">
+              <p class = "body"></p>
+                <div class="row mb-3">
+                    <label  style="font-size:1.25vw" for="input" class="col-sm-2 col-form-label">Insert Task</label>
+                <div class="col-sm-10">
+                    <input id="input" class="form-control" type="text" placeholder="" v-model="tarea" :key="tarea" @keyup.enter="mounted(tarea)"/>
+                </div>
+                </div>
+                
+
+            <p class="font-weight-bold text-center" style="font-size:1.25vw"> Tasks List </p> 
+            <ul class="list-group ">
+                <li class="list-group-item list-group-item-info " v-for="(tarea, index) in tareas" :key="tarea" @click="borrarTarea(index)">
+                    {{tarea}}
+                </li>
+            </ul>
+        </body>
         </div>
-        <ul>
-            <li v-for="(tarea, index) in tareas" :key="tarea" @click="borrarTarea(index)">
-                 {{tarea}}
-            </li>
-        </ul>
     </main>
+    <script src="js/bootstrap.bundle.min.js"></script>
+     <script src="js/vue.js"></script>
+
 </body>
 </html> 
-<script>
-    new Vue({
-            el: "#app", 
-            data:{
-            tareas: ["comer","trabajar"]
-            },
-
-            methods:{
-                mounted(tarea) {
-                    console.log(this.tareas);
-                    alert(tarea);
-                    if(tarea == undefined || tarea == null || tarea == ""){
-                        alert("empty task");
-                    }else{
-                    this.tareas.push(tarea);
-                    }
-                },
-                borrarTarea(index){
-                    console.log(index);
-                    setTimeout(()=>{
-                    this.tareas.splice(index,1);
-                    }, 3000)
-                }
-            }
-    })
-  </script>  
