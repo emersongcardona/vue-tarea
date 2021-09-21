@@ -1,64 +1,83 @@
-    Vue.component('crear-tarea',{
+   var EventBus = new Vue;
+   
+   
+   Vue.component('create-task',{
         data: function(){
             return{
-                text: ""
-                
-
+                message: ""
             }
         }, 
-         props:{
-            arreglo:{
-                type: Array, required: true
-            },
-            
+        props:{
+            // task:{
+            //     type: String, required: true
+            // },
             add:{
                 type: Function, required: true
-
-            }
-
-         },
+                }
+            },
          template: 
             `
                 <div>
-                    <input type="text" v-model="text"/>
-                    <button v-on:click="$emit('text', add(text))">submit</button>
-
+                    <inputTask v-model="text"> </inputTask>
+                    <button @addtext=escucha  v-on:click="$emit('message', add(message)) ">Submit</button>
                 </div>
                 `
-    ,
-    // methods:{
-    //         add(tarea) {
-    //             console.log(tarea);
-    //             if(tarea == undefined || tarea == null || tarea == ""){
-    //                 alert("empty task");
-    //             }else{
-    //                 console.log("que paso amiguito")
-    //                 this.arreglo.push(tarea);
-    //             }
-    //         } 
-    //     }
+        , methods:{
+            escucha: function(text){
+                console.log(text);
+                text = message
+            }
+
+        }
     })
     
+    // Vue.component('clearButton',{
+    //     template:
+    //         `
+    //         <div>
+    //             <button v-on:click="$emit('text', clear(text))">Clear</button>
+    //         </div>
+    //         `
+    // })
+
+    Vue.component('inputTask',{
+        data: function(){
+            return{
+                text: ""
+            }
+        },
+        template:
+        `
+        <input type="text" v-model="text"/>
+        `,
+        methods:{
+            addtext: function(){
+            console.log(this.text)
+            this.$emit("addtext", this.text)
+            }
+        }
+    })
+
 
 
     new Vue({
             el: "#app", 
             data:{
-                tareas: ["Example"]
+                tasks: ["Example"]
             },
             methods:{
-                mounted(tarea) {
-                    console.log(this.tareas);
-                    if(tarea == undefined || tarea == null || tarea == ""){
+                addtask(task) {
+                    console.log(this.task);
+                    if(task == undefined || task == null || task == ""){
                         alert("empty task");
                     }else{
-                        this.tareas.push(tarea);
+                        this.tasks.push(task);
                     }
                 },
-                borrarTarea(index){
+                deletetask(index){
                     console.log(index);
                     setTimeout(()=>{
-                        this.tareas.splice(index,1);
+                        this.tasks.splice(index,1);
                     }, 3000)
                 }
             }
