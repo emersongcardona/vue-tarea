@@ -20,20 +20,22 @@
         <div class="container">
           <div class="body">
               <p class = "body"></p>
-                <div class="row mb-3">
+                <!-- <div class="row mb-3">
                     <label  style="font-size:1.25vw" for="input" class="col-sm-2 col-form-label">Insert Task</label>
                 <div class="col-sm-10">
                     <input id="input" class="form-control" type="text" placeholder="" v-model="tarea" :key="tarea" @keyup.enter="mounted(tarea)"/>
                 </div>
-                </div>
-                
+                </div> -->
+                <crear-tarea :arreglo="tareas" :add="mounted"></crear-tarea>    
 
+            
             <p class="font-weight-bold text-center" style="font-size:1.25vw"> Tasks List </p> 
             <ul class="list-group ">
                 <li class="list-group-item list-group-item-info " v-for="(tarea, index) in tareas" :key="tarea" @click="borrarTarea(index)">
                     {{tarea}}
                 </li>
             </ul>
+            
         </body>
         </div>
     </main>

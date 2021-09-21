@@ -1,0 +1,5 @@
+hacer 3 componentes en vue
+input componente
+boton componente
+componente de default que une el input y el boton que haga el insert de la nueva tarea
+
